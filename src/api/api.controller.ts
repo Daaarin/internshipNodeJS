@@ -7,11 +7,11 @@ export class ApiController {
     return 'Hi, are u looking for the other side?';
   }
   @Get('health')
-  async getHealthResponse() {
+  getHealthResponse() {
     const response = {
       status: 'ok',
       serverTime: Date.now(),
     };
-    return await JSON.stringify(response);
+    return JSON.stringify(response);
   }
 }
