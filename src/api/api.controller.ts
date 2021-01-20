@@ -1,4 +1,17 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 
 @Controller('api')
-export class ApiController {}
+export class ApiController {
+  @Get()
+  getAll(): string {
+    return 'Hi, are u looking for the other side?';
+  }
+  @Get('health')
+  async getHealthResponse() {
+    const response = {
+      status: 'ok',
+      serverTime: Date.now(),
+    };
+    return await JSON.stringify(response);
+  }
+}
