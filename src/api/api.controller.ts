@@ -6,10 +6,6 @@ export class ApiController {
   getAll(): string {
     return 'Hi, are u looking for the other side?';
   }
-  @Get(':id')
-  getRate(@Param('id') params) {
-    return 5;
-  }
   @Get('health')
   getHealthResponse() {
     const response = {
@@ -17,5 +13,10 @@ export class ApiController {
       serverTime: Date.now(),
     };
     return JSON.stringify(response);
+  }
+  @Get('cbr')
+  @Get(':id')
+  getRate(@Param('id') params): { value: number } {
+    return { value: 5.6 };
   }
 }
