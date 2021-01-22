@@ -14,9 +14,9 @@ export class ApiController {
     };
     return JSON.stringify(response);
   }
-  @Get('cbr')
-  @Get(':id')
-  getRate(@Param('id') params): { value: number } {
-    return { value: 5.6 };
+  @Get('cbr/:id')
+  //@Get(':id')
+  getRate(@Param('id') params) {
+    return 6;
   }
 }
