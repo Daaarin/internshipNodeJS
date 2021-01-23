@@ -16,7 +16,7 @@ export class ApiController {
   }
   @Get('cbr/:id')
   //@Get(':id')
-  getRate(@Param('id') params) {
-    return 6;
+  getRate(@Param('id') params): { value: number } {
+    return { value: 6 };
   }
 }
