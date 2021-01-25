@@ -7,7 +7,11 @@ import { AppService } from '../../app.service'
 export class CbrController {
   constructor(private readonly cbrService: CbrService) {}
   @Get(':date')
-  async getRate(@Param('date') params): Promise<IResponse> {
-    return await this.cbrService.getRate(params.date)
+  async getRate(@Param('date') date): Promise<IResponse> {
+    return await this.cbrService.getRate(date)
+  }
+  @Get()
+  sayHi(): string {
+    return this.cbrService.sayHi()
   }
 }
