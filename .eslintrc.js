@@ -21,7 +21,9 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 0,
-    "@typescript-eslint/semi": 0,
-
+    'no-extra-parens': 1,
+    'no-extra-semi': 'warn',
+    'no-multiple-empty-lines': 1,
+    "quotes": ["warn", "single", "avoid-escape"],
   },
 };
