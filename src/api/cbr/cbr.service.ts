@@ -20,6 +20,16 @@ export class CbrService {
           'Что-то пошло не так, сервис сейчас недоступун - попробуйте позже';
       } else {
         //console.log(result.KeyRateXMLResult);
+        if (
+          result.KeyRateXMLResult.KeyRate.KR.Rate ||
+          result.KeyRateXMLResult.KeyRate.KR ||
+          result.KeyRateXMLResult.KeyRate ||
+          result.KeyRateXMLResult ||
+          result
+        ) {
+          myResp.message = 'Сервис ЦБР не дал ответ, попробуйте позже';
+          return myResp;
+        }
         myResp.value = result.KeyRateXMLResult.KeyRate.KR.Rate;
         //console.log(myResp.value)
         flag = true;
@@ -38,8 +48,8 @@ export class CbrService {
       return resp;
     };
     myResp = returnResp(myResp);
-    let resp = new response()
-    resp = myResp
+    let resp = new response();
+    resp = myResp;
     return myResp; // здесь myResp = {value: 0, code: 0}
   }
   sayHi(): string {
