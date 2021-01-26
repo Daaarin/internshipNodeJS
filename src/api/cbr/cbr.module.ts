@@ -24,7 +24,10 @@ export class response implements IResponse {
   public statusCode: number
   public message?: string
   constructor() {
-    this.value = 0
+    this.value = 1
     this.statusCode = 0
+  }
+  setVal(val){
+    this.value = val
   }
 }
