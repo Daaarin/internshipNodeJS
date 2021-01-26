@@ -27,11 +27,12 @@ export class CbrService {
           result.KeyRateXMLResult.KeyRate.KR.Rate
         ) {
           myResp.message = 'Сервис ЦБР не дал ответ, попробуйте позже';
+          console.log(myResp.message);
           return myResp;
         }
         //console.log(result.KeyRateXMLResult);
         myResp.value = result.KeyRateXMLResult.KeyRate.KR.Rate;
-        //console.log(myResp.value)
+        console.log(myResp.value);
         flag = true;
       }
       if (flag) {
@@ -41,10 +42,39 @@ export class CbrService {
       return myResp;
     };
     const keyRateXML = (err, client) => {
-      return client.KeyRateXML({ fromDate: date, ToDate: date }, res);
+      return;
     };
     const returnResp = (resp) => {
-      soap.createClient(Module.wsdl, keyRateXML);
+      soap.createClient(Module.wsdl, (err, client) => {
+        client.KeyRateXML({ fromDate: date, ToDate: date }, (err, result) => {
+          if (err) {
+            myResp.message =
+              'Что-то пошло не так, сервис сейчас недоступун - попробуйте позже';
+          } else {
+            console.log(result.KeyRateXMLResult);
+            if (
+              !result ||
+              !result.KeyRateXMLResult ||
+              !result.KeyRateXMLResult.KeyRate ||
+              !result.KeyRateXMLResult.KeyRate.KR ||
+              !result.KeyRateXMLResult.KeyRate.KR.Rate
+            ) {
+              myResp.message = 'Сервис ЦБР не дал ответ, попробуйте позже';
+              console.log(myResp.message);
+              return myResp;
+            }
+            //console.log(result.KeyRateXMLResult);
+            myResp.value = result.KeyRateXMLResult.KeyRate.KR.Rate;
+            console.log(myResp.value);
+            flag = true;
+          }
+          if (flag) {
+            myResp.statusCode = 200;
+          }
+          console.log(myResp); // здесь myResp = {value: x.xx, code: 200} если всё успешно прошло
+          return myResp;
+        });
+      });
       return resp;
     };
     myResp = returnResp(myResp);

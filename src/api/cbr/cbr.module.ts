@@ -8,8 +8,7 @@ import { IResponse } from '../api.module'
   providers: [CbrService],
 })
 export class CbrModule {
-  public readonly url = 'http://www.cbr.ru/DailyInfoWebServ/DailyInfo.asmx'
-  public readonly wsdl = this.url + '?WSDL'
+  public readonly wsdl = 'http://www.cbr.ru/DailyInfoWebServ/DailyInfo.asmx?WSDL'
   public readonly xml = [
     '<?xml version="1.0" encoding="utf-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://web.cbr.ru/"><soapenv:Header/><soapenv:Body><web:KeyRateXML><web:fromDate>',
     '</web:fromDate><web:ToDate>',
