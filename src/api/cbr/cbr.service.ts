@@ -7,7 +7,7 @@ import { IResponse } from '../api.module';
 export class CbrService {
   async getRate(date): Promise<IResponse> {
     const Module = new CbrModule();
-    const myResp = new response();
+    const myResp = new response(); // myResp = {value: 0, code: 0}
     let flag = false;
     soap.createClient(Module.wsdl, function (err, client) {
       client.KeyRateXML(
@@ -27,11 +27,11 @@ export class CbrService {
             myResp.statusCode = 200;
             delete myResp.message;
           }
-          console.log(myResp);
+          console.log(myResp); // здесь myResp = {value: x.xx, code: 200} если всё успешно прошло
         },
       );
     });
-    return myResp;
+    return myResp // здесь myResp = {value: 0, code: 0}
   }
   sayHi(): string {
     return 'Hey-yo';
