@@ -14,3 +14,9 @@ export interface IResponse {
   readonly statusCode: number
   readonly message?: string
 }
+
+export interface IDate {
+  readonly year: number
+  readonly month: number
+  readonly day: number
+}
