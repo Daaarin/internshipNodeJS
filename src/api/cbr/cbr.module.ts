@@ -16,7 +16,6 @@ export class CbrModule {
     '</web:ToDate></web:KeyRateXML></soapenv:Body> </soapenv:Envelope>',
   ]
   public SoapClient
-  public response = new response()
 }
 
 @Injectable()
@@ -24,4 +23,8 @@ export class response implements IResponse {
   public value: number
   public statusCode: number
   public message?: string
+  constructor() {
+    this.value = 0
+    this.statusCode = 0
+  }
 }
