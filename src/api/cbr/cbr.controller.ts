@@ -3,7 +3,7 @@ import { IResponse } from '../api.module'
 import { CbrService } from './cbr.service'
 import { AppService } from '../../app.service'
 
-@Controller('cbr')
+@Controller('api/cbr')
 export class CbrController {
   constructor(private readonly cbrService: CbrService) {}
   @Get(':date')
