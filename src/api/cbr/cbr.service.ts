@@ -8,7 +8,7 @@ import XMLHttpRequest = require('xmlhttprequest')
 
 @Injectable()
 export class CbrService {
-  async getRate(date): Promise<IResponse> {
+  async getRate(date): Promise<any> /*<IResponse>*/ {
     const Module = new CbrModule()
     Module.response.statusCode = 400
     Module.response.message =
@@ -66,11 +66,11 @@ export class CbrService {
     //
     //
     soap.createClient(Module.wsdl, function (err, client) {
-      client['KeyRateXML'](
-        { fromDate: date, ToDate: date },
+      client['KeyRate'](
+        { fromDate: '2019-01-01', ToDate: '2019-01-02' },
         function (err, result) {
           if (err) console.log(err)
-          else console.log(result)
+          else console.dirxml(result)
         },
       )
     })
