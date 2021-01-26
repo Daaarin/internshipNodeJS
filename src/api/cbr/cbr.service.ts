@@ -19,17 +19,17 @@ export class CbrService {
         myResp.message =
           'Что-то пошло не так, сервис сейчас недоступун - попробуйте позже';
       } else {
-        //console.log(result.KeyRateXMLResult);
         if (
-          result.KeyRateXMLResult.KeyRate.KR.Rate ||
-          result.KeyRateXMLResult.KeyRate.KR ||
-          result.KeyRateXMLResult.KeyRate ||
+          result ||
           result.KeyRateXMLResult ||
-          result
+          result.KeyRateXMLResult.KeyRate ||
+          result.KeyRateXMLResult.KeyRate.KR ||
+          result.KeyRateXMLResult.KeyRate.KR.Rate
         ) {
           myResp.message = 'Сервис ЦБР не дал ответ, попробуйте позже';
           return myResp;
         }
+        //console.log(result.KeyRateXMLResult);
         myResp.value = result.KeyRateXMLResult.KeyRate.KR.Rate;
         //console.log(myResp.value)
         flag = true;
