@@ -10,7 +10,7 @@ import { ApiService } from './api.service'
 export class ApiModule {}
 
 export interface IResponse {
-  readonly value: number
+  readonly value?: number
   readonly statusCode: number
   readonly message?: string
 }
