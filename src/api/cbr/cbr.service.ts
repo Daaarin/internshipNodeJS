@@ -27,10 +27,16 @@ export class CbrService {
         })
       })
       .then((result) => {
+        //result = [0:envelope, 1:error, 2:schema or headers]
         //for (let key of result[0]) console.log(key)
         console.log('result[0] from cbr: ', result[0].KeyRateXMLResult)
+        if (!result[0] || !result[1]) {
+          outputResponse.message = 'Сервис ЦБР недоступен, попробуйте позже'
+          outputResponse.statusCode = 400
+          console.log('Error message: ', outputResponse.message)
+          return
+        }
         if (
-          !result[0] ||
           !result[0].KeyRateXMLResult ||
           !result[0].KeyRateXMLResult.KeyRate ||
           !result[0].KeyRateXMLResult.KeyRate.KR ||
@@ -38,8 +44,9 @@ export class CbrService {
         ) {
           outputResponse.message =
             'Сервис ЦБР не дал ответ, попробуйте позже или другую дату'
-          outputResponse.statusCode = 400
-          console.log('Error message: ', outputResponse.message)
+          outputResponse.statusCode = 200
+          outputResponse.value = 0
+          console.log('Warning message: ', outputResponse.message)
           return
         }
         outputResponse.value = result[0].KeyRateXMLResult.KeyRate.KR.Rate
