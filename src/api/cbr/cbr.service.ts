@@ -21,58 +21,36 @@ export class CbrService {
     await soap
       .createClientAsync(CbrService.wsdl)
       .then((client) => {
-        return client.KeyRateXMLAsync({ fromDate: date, ToDate: date })
+        return client.KeyRateXMLAsync({
+          fromDate: inputDate,
+          ToDate: inputDate,
+        })
       })
       .then((result) => {
-        //for (let key of result) console.log(key)
-        console.log('Result from cbr: ', result.KeyRateXMLResult)
-        const err = async (undefinedField?) => {
-          outputResponse.message = 'Сервис ЦБР не дал ответ, попробуйте позже'
-          outputResponse.statusCode = 400
-          console.log('Error message: ', outputResponse.message)
-          if (!undefinedField) console.log("There's no result")
-          else console.log("There's no ", undefinedField)
-        }
-        switch (undefined) {
-          case result: {
-            err()
-            return
-          }
-          case result.KeyRateXMLResult: {
-            err(result)
-            return
-          }
-          case result.KeyRateXMLResult.KeyRate: {
-            err(result.KeyRateXMLResult)
-            return
-          }
-          case result.KeyRateXMLResult.KeyRate.KR: {
-            err(result.KeyRateXMLResult.KeyRate)
-            return
-          }
-          case result.KeyRateXMLResult.KeyRate.KR.Rate: {
-            err(result.KeyRateXMLResult.KeyRate.KR)
-            return
-          }
-        }
-        /*if (
-          !result ||
-          !result.KeyRateXMLResult ||
-          !result.KeyRateXMLResult.KeyRate ||
-          //result.KeyRateXMLResult.KeyRate.Error ||
-          !result.KeyRateXMLResult.KeyRate.KR ||
-          !result.KeyRateXMLResult.KeyRate.KR.Rate
+        //for (let key of result[0]) console.log(key)
+        console.log('result[0] from cbr: ', result[0].KeyRateXMLResult)
+        if (
+          !result[0] ||
+          !result[0].KeyRateXMLResult ||
+          !result[0].KeyRateXMLResult.KeyRate ||
+          !result[0].KeyRateXMLResult.KeyRate.KR ||
+          !result[0].KeyRateXMLResult.KeyRate.KR.Rate
         ) {
-          outputResponse.message = 'Сервис ЦБР не дал ответ, попробуйте позже'
+          outputResponse.message =
+            'Сервис ЦБР не дал ответ, попробуйте позже или другую дату'
           outputResponse.statusCode = 400
           console.log('Error message: ', outputResponse.message)
           return
-        }*/
-        //console.log(result.KeyRateXMLResult);
-        outputResponse.value = result.KeyRateXMLResult.KeyRate.KR.Rate
+        }
+        outputResponse.value = result[0].KeyRateXMLResult.KeyRate.KR.Rate
         console.log('Gotten value: ', outputResponse.value)
         flag = true
         if (flag && outputResponse.value) outputResponse.statusCode = 200
+        else {
+          outputResponse.statusCode = 400
+          outputResponse.message =
+            'Сервис ЦБР не дал ответ, попробуйте позже или другую дату'
+        }
         return
       })
     console.log('Response: ', outputResponse)
