@@ -32,6 +32,7 @@
     "jquery": "^3.5.1",
     "jquery.soap": "^1.7.3",
     "jsdom": "^16.4.0",
+    "moment": "^2.29.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.3",
