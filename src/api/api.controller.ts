@@ -1,11 +1,11 @@
-import { Controller, Get, Param } from '@nestjs/common'
-import { IResponse } from './api.module'
+import { Controller, Get, Param } from '@nestjs/common';
+import { IResponse } from './api.module';
 
 @Controller('api')
 export class ApiController {
   @Get()
   getAll(): string {
-    return 'Hi, are u looking for the other side?'
+    return 'Hi, are u looking for the other side?';
   }
 
   @Get('health')
@@ -13,7 +13,7 @@ export class ApiController {
     const response = {
       status: 'ok',
       serverTime: Date.now(),
-    }
-    return JSON.stringify(response)
+    };
+    return JSON.stringify(response);
   }
 }

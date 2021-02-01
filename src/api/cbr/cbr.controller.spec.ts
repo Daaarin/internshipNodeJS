@@ -1,18 +1,18 @@
-import { Test, TestingModule } from '@nestjs/testing'
-import { CbrController } from './cbr.controller'
+import { Test, TestingModule } from '@nestjs/testing';
+import { CbrController } from './cbr.controller';
 
 describe('CbrController', () => {
-  let controller: CbrController
+  let controller: CbrController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [CbrController],
-    }).compile()
+    }).compile();
 
-    controller = module.get<CbrController>(CbrController)
-  })
+    controller = module.get<CbrController>(CbrController);
+  });
 
   it('should be defined', () => {
-    expect(controller).toBeDefined()
-  })
-})
+    expect(controller).toBeDefined();
+  });
+});

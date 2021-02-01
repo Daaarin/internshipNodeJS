@@ -22,7 +22,6 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 0,
     'no-extra-parens': 1,
-    'no-extra-semi': 'off',
     'no-multiple-empty-lines': 1,
     "quotes": ["warn", "single", "avoid-escape"],
   },
