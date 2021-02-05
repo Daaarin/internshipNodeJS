@@ -24,5 +24,6 @@ module.exports = {
     'no-extra-parens': 1,
     'no-multiple-empty-lines': 1,
     "quotes": ["warn", "single", "avoid-escape"],
+    'trailing-comma': 'off'
   },
 };
