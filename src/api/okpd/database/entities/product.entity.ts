@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryColumn } from 'typeorm';
 
 @Entity('OKPD')
-export class RecordEntity {
+export class Product {
   @PrimaryColumn({ nullable: false })
   ID: number;
 
