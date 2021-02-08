@@ -7,7 +7,7 @@ export class OkpdController {
   constructor(private readonly okpdServise: OkpdService) {}
 
   @Get('getAll')
-  async getAll(@Res() res): Promise<RecordEntity[]> {
+  async getAll(): Promise<RecordEntity[]> {
     return await this.okpdServise.getAll();
   }
 }

@@ -16,8 +16,9 @@ import { OkpdModule } from './api/okpd/okpd.module';
     OkpdModule,
     TypeOrmModule.forRoot({
       type: 'sqlite',
-      database: './api/okpd/database/sqlite/okpd.db',
-      entities: [__dirname + '/**/*.entity{.ts,.js}']
+      database: './src/api/okpd/database/sqlite/okpd.db',
+      entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      synchronize: true
     })
   ],
   controllers: [AppController, ApiController, CbrController],
