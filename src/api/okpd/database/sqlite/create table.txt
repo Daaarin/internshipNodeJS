@@ -1,0 +1,49 @@
+create table Okpd2Codes(
+	'ID' integer primary key autoincrement ,
+	'Name' varchar(250) not null,
+	'Code'  varchar(50) not null,
+	'Notes' text null
+);
+
+create table Attributes44FZ(
+	'ID' integer primary key autoincrement,
+	'Name' varchar(250) not null,
+	'Description' text,
+	'DocLink' varchar(450)
+);
+
+create table Okpd2Codes_Attributes44FZ(
+	'ID' integer primary key autoincrement,
+	'Okpd2Code_ID' integer,
+	'Attributes44FZ_ID' integer,
+	foreign key (Okpd2Code_ID) references Okpd2Codes(ID),
+	foreign key (Attributes44FZ_ID) references Attributes44FZ(ID)
+);
+
+
+Okpd2Codes									Attributes44FZ									Okpd2Codes_Attributes44FZ
+------------------------------  			----------------------------------				-----------------------------
+ID | Name   | Code   |Notes |				ID | Name  | Description | DocLink				Okpd2Code_ID | Attributes44FZ_ID
+------------------------------				----------------------------------				---------------------------------
+0	 Name1    01	   null					 0	 KTRU    desc1			link1					0			1
+1	 Name2    01.11	   null					 1	 st29    desc2			link2					0			2
+2	 Name3 	  10.5	   null					 2   471r    desc3			link3					1			0
+																								2			null
+																								
+										
+
+insert into Okpd2Codes (Name, Code, Notes) values ('Name1', '01', null);
+insert into Okpd2Codes (Name, Code, Notes) values ('Name2', '01.11', 'note2');
+insert into Okpd2Codes (Name, Code, Notes) values ('Name3', '10.5', null);
+
+insert into Attributes44FZ (Name, Description, DocLink) values ('KTRU', 'desc1', 'link1');
+insert into Attributes44FZ (Name, Description, DocLink) values ('st29', 'desc2', 'link2');
+insert into Attributes44FZ (Name, Description, DocLink) values ('471r', 'desc3', 'link3');
+
+insert into Okpd2Codes_Attributes44FZ (Okpd2Code_ID, Attributes44FZ_ID) values ('0', '1');
+insert into Okpd2Codes_Attributes44FZ (Okpd2Code_ID, Attributes44FZ_ID) values ('0', '2');
+insert into Okpd2Codes_Attributes44FZ (Okpd2Code_ID, Attributes44FZ_ID) values ('1', '0');
+insert into Okpd2Codes_Attributes44FZ (Okpd2Code_ID, Attributes44FZ_ID) values ('', '');
+
+
+

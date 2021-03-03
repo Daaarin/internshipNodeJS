@@ -8,7 +8,7 @@ import cheerio = require('cheerio');
 export class OkpdController {
   constructor(private readonly okpdServise: OkpdService) {}
 
-  @Get('getAll')
+  /*@Get('getAll')
   async getAll(@Res() res): Promise<Product[]> {
     const data = await this.okpdServise.getAll();
     const outputResponse = {
@@ -30,7 +30,7 @@ export class OkpdController {
       statusCode: outputResponse.statusCode,
       errorMessage: outputResponse.errorMessage
     });
-  }
+  }*/
   @Post('getData')
   async getData(@Body() input, @Res() res): Promise<any> {
     const outputResponse = {
@@ -87,6 +87,32 @@ export class OkpdController {
     } else {
       outputResponse.statusCode = 400;
     }
+    return await res.send({
+      data: outputResponse.data,
+      statusCode: outputResponse.statusCode,
+      errorMessage: outputResponse.errorMessage
+    });
+  }
+  @Get('getAllData')
+  async getAllData(@Res() res) {
+    const data = await this.okpdServise.getAllData();
+    console.log('Data from db: ', data);
+    const outputResponse = {
+      data: [],
+      errorMessage: '',
+      statusCode: 0
+    };
+    if (!data.length) {
+      outputResponse.errorMessage = "Couldn't get access to database";
+      outputResponse.statusCode = 500;
+      console.log(outputResponse.data);
+      delete outputResponse.data;
+    } else {
+      outputResponse.data = data;
+      outputResponse.statusCode = 200;
+      delete outputResponse.errorMessage;
+    }
+    console.log(outputResponse);
     return await res.send({
       data: outputResponse.data,
       statusCode: outputResponse.statusCode,
