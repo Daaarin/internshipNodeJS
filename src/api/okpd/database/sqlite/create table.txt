@@ -45,5 +45,39 @@ insert into Okpd2Codes_Attributes44FZ (Okpd2Code_ID, Attributes44FZ_ID) values (
 insert into Okpd2Codes_Attributes44FZ (Okpd2Code_ID, Attributes44FZ_ID) values ('1', '0');
 insert into Okpd2Codes_Attributes44FZ (Okpd2Code_ID, Attributes44FZ_ID) values ('', '');
 
+CREATE TABLE IF NOT EXISTS "okpd2_codes__attributes44fz__attributes44fz_id__attributes44fz" 
+(	"okpd2CodesAttributes44FZID" integer NOT NULL, 
+	"attributes44FZID" integer NOT NULL, 
+	CONSTRAINT "FK_a2ed4df59ef2e409303d1bcbfd4" FOREIGN KEY ("okpd2CodesAttributes44FZID") REFERENCES "Okpd2Codes_Attributes44FZ" ("ID") 
+		ON DELETE CASCADE ON UPDATE NO ACTION, 
+	CONSTRAINT "FK_12d4660dd9056f35d5d965fbf06" FOREIGN KEY ("attributes44FZID") REFERENCES "Attributes44FZ" ("ID") 
+		ON DELETE CASCADE ON UPDATE NO ACTION, 
+	PRIMARY KEY ("okpd2CodesAttributes44FZID", "attributes44FZID"));
+CREATE INDEX "IDX_a2ed4df59ef2e409303d1bcbfd" ON "okpd2_codes__attributes44fz__attributes44fz_id__attributes44fz" ("okpd2CodesAttributes44FZID") ;
+CREATE INDEX "IDX_12d4660dd9056f35d5d965fbf0" ON "okpd2_codes__attributes44fz__attributes44fz_id__attributes44fz" ("attributes44FZID") ;
+
+
+CREATE TABLE IF NOT EXISTS "okpd2_codes__attributes44fz__okpd2_code_id__okpd2_codes" (
+	"okpd2CodesAttributes44FZID" integer NOT NULL, 
+	"okpd2CodesID" integer NOT NULL, 
+	CONSTRAINT "FK_2d4ac16bdc6830e8ddad1964adc" FOREIGN KEY ("okpd2CodesAttributes44FZID") REFERENCES "Okpd2Codes_Attributes44FZ" ("ID") 
+		ON DELETE CASCADE ON UPDATE NO ACTION, 
+	CONSTRAINT "FK_a408f112176792dfb4182b0b2f7" FOREIGN KEY ("okpd2CodesID") REFERENCES "Okpd2Codes" ("ID") 
+		ON DELETE CASCADE ON UPDATE NO ACTION, 
+	PRIMARY KEY ("okpd2CodesAttributes44FZID", "okpd2CodesID"));
+CREATE INDEX "IDX_2d4ac16bdc6830e8ddad1964ad" ON "okpd2_codes__attributes44fz__okpd2_code_id__okpd2_codes" ("okpd2CodesAttributes44FZID") ;
+CREATE INDEX "IDX_a408f112176792dfb4182b0b2f" ON "okpd2_codes__attributes44fz__okpd2_code_id__okpd2_codes" ("okpd2CodesID") ;
+
+
+
+
+
+
+
+
+
+
+
+
 
 
